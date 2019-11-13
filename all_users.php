@@ -30,6 +30,7 @@
 		                     FROM users 
 							 JOIN status 
 							 ON users.status_id = status.id 
+							 
 							 ORDER BY username');
 	?>
 		<table>
