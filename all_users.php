@@ -26,11 +26,27 @@
 	?>
 
 	<?php
-		$stmt = $pdo->query('SELECT username FROM users');
-		while ($row = $stmt->fetch())
-		{
-			echo $row['username'] . "\n";
-		}
+		$stmt = $pdo->query('SELECT * FROM users JOIN status ON users.status_id = status.id ORDER BY username');
 	?>
+		<table>
+			<tr>
+				<th>ID</th>
+				<th>Username</th>
+				<th>Email</th>
+				<th>Status</th>
+			</tr>
+			
+			<?php 
+				while ($row = $stmt->fetch()) {
+					echo "<tr>";
+					echo "<td> $row[id]</td>";
+					echo "<td> $row[username]</td>";
+					echo "<td> $row[email] </td>";
+					echo "<td> $row[name] </td>";
+					echo "</tr>";
+				}
+			?>
+		</table>
+		
 	</body>
 </html> 
