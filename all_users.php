@@ -26,7 +26,11 @@
 	?>
 
 	<?php
-		$stmt = $pdo->query('SELECT * FROM users JOIN status ON users.status_id = status.id ORDER BY username');
+		$stmt = $pdo->query('SELECT users.id as user_id, username, email, name 
+		                     FROM users 
+							 JOIN status 
+							 ON users.status_id = status.id 
+							 ORDER BY username');
 	?>
 		<table>
 			<tr>
@@ -39,7 +43,7 @@
 			<?php 
 				while ($row = $stmt->fetch()) {
 					echo "<tr>";
-					echo "<td> $row[id]</td>";
+					echo "<td> $row[user_id]</td>";
 					echo "<td> $row[username]</td>";
 					echo "<td> $row[email] </td>";
 					echo "<td> $row[name] </td>";
