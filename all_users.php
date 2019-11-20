@@ -33,8 +33,8 @@
 	  <div>
 		<label for="email">Selectionner status </label>
 		<select name="status">
-			<option>Waiting for account validation</option>
-			<option>Active account</option>
+			<option value="1">Waiting for account validation</option>
+			<option value="2">Active account</option>
 		</select>
 	  </div>
 	  <div class="form-example">
@@ -44,11 +44,7 @@
 	
 	<?php
 		$leNom = $_POST['name'];
-		if((strcmp($_POST['status'], "Waiting for account validation")) == 0) {
-			$leStatus = 1;
-		} else {
-			$leStatus = 2;
-		}
+		$leStatus = $_POST['status'];
 	?>
 
 	<?php
