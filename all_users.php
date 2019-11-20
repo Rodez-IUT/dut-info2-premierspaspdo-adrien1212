@@ -28,13 +28,14 @@
 	<form action="all_users.php" method="post">
 	  <div>
 		<label for="name">Entrer la premiere lettre : </label>
-		<input type="text" name="name" id="name" required>
+		<input type="text" name="name" id="name">
 	  </div>
 	  <div>
 		<label for="email">Selectionner status </label>
 		<select name="status">
 			<option value="1">Waiting for account validation</option>
 			<option value="2">Active account</option>
+			<option value="3">Waiting for account deletion</option>
 		</select>
 	  </div>
 	  <div class="form-example">
