@@ -24,16 +24,42 @@
 			 throw new PDOException($e->getMessage(), (int)$e->getCode());
 		}
 	?>
+	
+	<form action="all_users.php" method="post">
+	  <div>
+		<label for="name">Entrer la premiere lettre : </label>
+		<input type="text" name="name" id="name" required>
+	  </div>
+	  <div>
+		<label for="email">Selectionner status </label>
+		<select name="status">
+			<option>Waiting for account validation</option>
+			<option>Active account</option>
+		</select>
+	  </div>
+	  <div class="form-example">
+		<input type="submit" value="ok">
+	  </div>
+	</form>
+	
+	<?php
+		$leNom = $_POST['name'];
+		if((strcmp($_POST['status'], "Waiting for account validation")) == 0) {
+			$leStatus = 1;
+		} else {
+			$leStatus = 2;
+		}
+	?>
 
 	<?php
-		$stmt = $pdo->query('SELECT users.id as user_id, username, email, name 
+		$stmt = $pdo->query("SELECT users.id as user_id, username, email, name 
 		                     FROM users 
 							 JOIN status 
 							 ON users.status_id = status.id 
-							 WHERE username LIKE \'e%\'
-							 AND status.id = 2
+							 WHERE username LIKE '$leNom%'
+							 AND status.id = $leStatus
 							 
-							 ORDER BY username');
+							 ORDER BY username");
 	?>
 		<table>
 			<tr>
