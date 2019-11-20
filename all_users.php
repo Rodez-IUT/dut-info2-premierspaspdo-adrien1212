@@ -43,19 +43,21 @@
 	</form>
 	
 	<?php
-		$leNom = $_POST['name'];
+		$leNom = $_POST['name'] . "%";
 		$leStatus = $_POST['status'];
 	?>
 
 	<?php
-		$stmt = $pdo->query("SELECT users.id as user_id, username, email, name 
+		$stmt = $pdo->prepare("SELECT users.id as user_id, username, email, name 
 		                     FROM users 
 							 JOIN status 
 							 ON users.status_id = status.id 
-							 WHERE username LIKE '$leNom%'
-							 AND status.id = $leStatus
+							 WHERE username LIKE ?
+							 AND status.id = ?
 							 
 							 ORDER BY username");
+
+		$stmt->execute([$leNom, $leStatus]);
 	?>
 		<table>
 			<tr>
