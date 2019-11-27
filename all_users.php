@@ -76,7 +76,13 @@
 					echo "<td> $row[email] </td>";
 					echo "<td> $row[name] </td>";
 					if($_GET['status'] != 3) {
-						echo "<td><a href=\"all_users.php?status=$leStatus&name=$leNom&action=askDeletion\">Ask Deletion</a></td>";
+						echo "<td><a href=\"all_users.php?status=$leStatus&id=$row[user_id]&action=askDeletion\">Ask Deletion</a></td>";
+						
+						if(isset($_GET['action'])) {
+							$stmt2 = $pdo->prepare("INSERT INTO action_log (action_date, action_name, user_id)
+													VALUES(NOW(), ?, ?)");
+							$stmt2->execute([$_GET['action'], $_GET['id']]);
+						}
 					}
 					
 					echo "</tr>";
