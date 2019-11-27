@@ -75,6 +75,10 @@
 					echo "<td> $row[username]</td>";
 					echo "<td> $row[email] </td>";
 					echo "<td> $row[name] </td>";
+					if($_POST['status'] != 3) {
+						echo "<td><a href=\"all_users.php?status_id=3&user_id=$leNom&action=askDeletion\">Ask Deletion</a></td>";
+					}
+					
 					echo "</tr>";
 				}
 			?>
