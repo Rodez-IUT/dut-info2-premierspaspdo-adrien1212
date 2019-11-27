@@ -25,7 +25,7 @@
 		}
 	?>
 	
-	<form action="all_users.php" method="post">
+	<form action="all_users.php" method="get">
 	  <div>
 		<label for="name">Entrer la premiere lettre : </label>
 		<input type="text" name="name" id="name">
@@ -44,8 +44,8 @@
 	</form>
 	
 	<?php
-		$leNom = $_POST['name'] . "%";
-		$leStatus = $_POST['status'];
+		$leNom = $_GET['name'] . "%";
+		$leStatus = $_GET['status'];
 	?>
 
 	<?php
@@ -75,8 +75,8 @@
 					echo "<td> $row[username]</td>";
 					echo "<td> $row[email] </td>";
 					echo "<td> $row[name] </td>";
-					if($_POST['status'] != 3) {
-						echo "<td><a href=\"all_users.php?status_id=3&user_id=$leNom&action=askDeletion\">Ask Deletion</a></td>";
+					if($_GET['status'] != 3) {
+						echo "<td><a href=\"all_users.php?status=$leStatus&name=$leNom&action=askDeletion\">Ask Deletion</a></td>";
 					}
 					
 					echo "</tr>";
